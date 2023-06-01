@@ -21,9 +21,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String STR_CATEGORY = "name";
     private static final String STR_CAT_THUMB = "logo";
 
+    private static DatabaseHelper instance;
 
-
-//    private static final String STR_CAT_DES = "description";
+    public static synchronized DatabaseHelper getInstance(Context context) {
+        if (instance == null) {
+            instance = new DatabaseHelper(context.getApplicationContext());
+        }
+        return instance;
+    }
 
 
     public DatabaseHelper(Context context) {
@@ -62,28 +67,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void remove() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(DATABASE_TABLE, KEY_ID +" = ?", new String[]{KEY_ID});
+        db.close();
+//        db.execSQL(DATABASE_TABLE, new String[]{categories.getIdCategory()});
+    }
 
 
-
-
-//    public List<PojoClass> getAllContacts() {
-//        List<PojoClass> contactList = new ArrayList<>();
-//        String selectQuery = "SELECT  * FROM " + DATABASE_TABLE;
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        Cursor cursor = db.rawQuery(selectQuery, null);
-//
-//        if (cursor.moveToFirst()) {
-//            do {
-//                PojoClass contact = new PojoClass();
-//                contact.setIdCategory(cursor.getString(0));
-//                contact.setStrCategory(cursor.getString(1));
-//                contact.setStrCategoryThumb(cursor.getString(2));
-//                contact.setStrCategoryDescription(cursor.getString(2));
-//                contactList.add(contact);
-//            } while (cursor.moveToNext());
-//        }
-//        return contactList;
-//    }
+    public List<Categories> getAllContacts() {
+        List<Categories> contactList = new ArrayList<>();
+        String selectQuery = "SELECT  * FROM " + DATABASE_TABLE;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Categories contact = new Categories(DatabaseHelper.STR_CATEGORY,DatabaseHelper.STR_CAT_THUMB);
+                contact.setIdCategory(cursor.getString(0));
+                contact.setStrCategory(cursor.getString(1));
+                contact.setStrCategoryThumb(cursor.getString(2));
+                contact.setStrCategoryDescription(cursor.getString(2));
+                contactList.add(contact);
+            } while (cursor.moveToNext());
+        }
+        return contactList;
+    }
 
 
 
