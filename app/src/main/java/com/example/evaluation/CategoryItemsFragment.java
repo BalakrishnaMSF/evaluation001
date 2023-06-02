@@ -1,6 +1,6 @@
 package com.example.evaluation;
 
-import android.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -40,15 +40,15 @@ public class CategoryItemsFragment extends Fragment implements BottomSheetClickL
     }
 
 
-    @NonNull
-    public static CategoryItemsFragment newInstance(String param1, String param2) {
-        CategoryItemsFragment fragment = new CategoryItemsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+//    @NonNull
+//    public static CategoryItemsFragment newInstance(String param1, String param2) {
+//        CategoryItemsFragment fragment = new CategoryItemsFragment();
+//        Bundle args = new Bundle();
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -114,7 +114,8 @@ public class CategoryItemsFragment extends Fragment implements BottomSheetClickL
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                helper.remove(categories);
+                Categories categories1= new Categories(categories.getStrCategory(),categories.getStrCategoryThumb());
+                helper.remove(categories1);
                 Toast.makeText(getContext(), "Data removed", Toast.LENGTH_SHORT).show();
                 bottomSheetDialog.dismiss();
             }

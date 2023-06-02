@@ -49,14 +49,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-//    public void  insert(String data){
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.put(DatabaseHelper.STR_CATEGORY_DES,data);
-//        db.insert(DatabaseHelper.DATABASE_TABLE,null,contentValues);
-//
-//    }
-
 
     void insert(Categories categories) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -69,9 +61,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void remove(Categories categories) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(DATABASE_TABLE, KEY_ID +categories.getIdCategory(), null);
+        db.delete(DATABASE_TABLE, KEY_ID +"=?",new String[]{categories.getIdCategory()} );
         db.close();
-
     }
 
 
@@ -92,35 +83,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return contactList;
     }
-
-
-
-
-
-
-
-//
-//    public Cursor getAllData() {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        Cursor cursor = db.rawQuery("SELECT * FROM DATABASE_NAME", null);
-//        return cursor;
-//    }
-
-
-
-
-//    Categories getData(String des) {
-//        SQLiteDatabase db = this.getReadableDatabase();
-//
-//        Cursor cursor = db.query(DATABASE_TABLE, new String[]{STR_CATEGORY_DES}, STR_CATEGORY_DES + "",
-//                new String[]{des}, null, null, null, null);
-//        if (cursor != null)
-//            cursor.moveToFirst();
-//
-//        Categories contact = new Categories((cursor.getString(0)));
-//        return contact;
-//
-//    }
-
 
 }
