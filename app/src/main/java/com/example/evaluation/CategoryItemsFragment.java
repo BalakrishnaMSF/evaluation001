@@ -1,12 +1,12 @@
 package com.example.evaluation;
 
+import android.app.Fragment;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,14 +21,13 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
 
 
 public class CategoryItemsFragment extends Fragment implements BottomSheetClickListener {
 
     RecyclerView recyclerView;
     MyAdapter adapter;
-    DatabaseHelper databaseHelper;
 
 
     private static final String ARG_PARAM1 = "param1";
@@ -115,7 +114,7 @@ public class CategoryItemsFragment extends Fragment implements BottomSheetClickL
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                helper.remove();
+                helper.remove(categories);
                 Toast.makeText(getContext(), "Data removed", Toast.LENGTH_SHORT).show();
                 bottomSheetDialog.dismiss();
             }

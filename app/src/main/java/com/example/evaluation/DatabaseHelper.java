@@ -67,11 +67,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void remove() {
+    public void remove(Categories categories) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(DATABASE_TABLE, KEY_ID +" = ?", new String[]{KEY_ID});
+        db.delete(DATABASE_TABLE, KEY_ID +categories.getIdCategory(), null);
         db.close();
-//        db.execSQL(DATABASE_TABLE, new String[]{categories.getIdCategory()});
+
     }
 
 
