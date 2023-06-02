@@ -123,20 +123,5 @@ public class CategoryItemsFragment extends Fragment implements BottomSheetClickL
     }
 
 
-//    @Override
-//    public void onItemClicked1(Categories categories) {
-//        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getActivity());
-//        View bottomSheetView = LayoutInflater.from(getActivity()).inflate(R.layout.bottom_sheet2, null);
-//        bottomSheetDialog.setContentView(bottomSheetView);
-//        Button remove = bottomSheetView.findViewById(R.id.remove);
-//        bottomSheetDialog.show();
-//        remove.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                SQLiteDatabase database = DatabaseHelper.getInstance(getContext()).getReadableDatabase();
-//                database.delete("MEAL", "id = ?", new String[]{categories.getStrCategory(),categories.getStrCategoryThumb()});
-//            }
-//        });
-//
 
 }
