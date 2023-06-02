@@ -19,7 +19,7 @@ import java.util.List;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
      BottomSheetClickListener bottomListener;
-     BottomSheet2 bottomSheet2;
+
 
      List<Categories> Categories_list;
      private Context context;
